@@ -18,8 +18,51 @@
     <!-- link vue -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
+    <!-- vue -->
+    <div id="app">
+        <!-- container whatsapp -->
+        <div id="container">
+            <!-- lato sinistro -->
+            <aside>
+                <!-- navbar aside in cui inserirò il mio profilo, attivazione notifiche desktop e barra di ricerca utenti chat -->
+                <nav>
+                    <!-- mio avatar -->
+                    <div id="my-avatar">
+                        <!-- contenitore foto e nome personale -->
+                        <div>
+                            <img src="img/avatar_io.jpg" alt="profile">
+                            Sofia
+                        </div>
 
-    <div id="app">{{ message }}</div>
+                        <div id="icon-avatar">
+                            <i class="fa-sharp fa-solid fa-circle-notch"></i>
+                            <i class="fa-solid fa-message"></i>
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </div>
+                    </div>
+                    <div id="active-messages"><i class="fa-solid fa-bell-slash"></i></div>
+                    <div></div>
+                </nav>
+
+                <!-- contenitore contatti -->
+                <div id="conctact-container">
+                    <!-- un div per ogni contatto -->
+                    <div></div>
+                </div>
+            </aside>
+
+            <!-- contenitore lato destro -->
+            <div id="chat-container">
+                <!-- anteprima utente della chat aperta -->
+                <nav></nav>
+                <!-- chat -->
+                <div></div>
+                <!-- area in cui scrivo e invio un messaggio -->
+                <div></div>
+            </div>
+        </div>
+
+    </div>
 
 
     <script src="js/script.js"></script>
