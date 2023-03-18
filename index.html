@@ -84,11 +84,33 @@
                 <!-- contenitore lato destro -->
                 <div id="chat-container">
                     <!-- anteprima utente della chat aperta -->
-                    <nav></nav>
+                    <nav>
+                        <!-- lato sinistro navbar: img + username + ultimo accesso -->
+                        <div id="user-active">
+                            <img id="user-active-img" src="img/avatar_1.jpg" alt="">
+                            <div id="user-active-description">
+                                <div id="user-active-name">Michele</div>
+                                <div id="user-active-access">Ultimo accesso oggi alle 12.00</div>
+                            </div>
+                        </div>
+
+                        <!-- lato destro navbar: icone -->
+                        <div id="nav-right-icon">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <i class="fa-solid fa-paperclip"></i>
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </div>
+                    </nav>
+
                     <!-- chat -->
-                    <div></div>
+                    <div id="chat"></div>
+
                     <!-- area in cui scrivo e invio un messaggio -->
-                    <div></div>
+                    <div id="new-message">
+                        <i class="fa-regular fa-face-smile"></i>
+                        <input type="text" placeholder="Scrivi un messaggio">
+                        <i class="fa-solid fa-microphone"></i>
+                    </div>
                 </div>
             </div>
         </div>
