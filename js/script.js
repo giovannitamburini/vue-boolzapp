@@ -170,14 +170,52 @@ createApp({
             // fine contacts
 
             activeUser: 0,
-            
+
+            newMessage: '',
+
+            newMessageDescription: {},
+
+            newMessageReceivedDescription: {}, 
         }
     },
 
     methods: {
+
         changeChatIndex (userIndex) {
+
             this.activeUser = userIndex;
+        },
+
+        addNewMessageSent() {
+
+            this.newMessageDescription = {
+
+                date: '10/10',
+                message: this.newMessage,
+                status: 'sent',
+            };
+            
+            this.contacts[this.activeUser].messages.push(this.newMessageDescription);
+
+            this.newMessage = '';
+
+            setTimeout(this.addNewMessageReceived, 1000);
+        },
+
+        addNewMessageReceived() {
+
+            this.newMessageReceivedDescription = {
+
+                date: '20/5',
+                message: 'incredibile',
+                status: 'received',
+            };
+
+            this.contacts[this.activeUser].messages.push(this.newMessageReceivedDescription);
         }
+
     },
+
+
 
 }).mount('#app')
