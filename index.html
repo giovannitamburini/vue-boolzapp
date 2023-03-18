@@ -32,7 +32,7 @@
                             <!-- contenitore foto e nome personale -->
                             <div>
                                 <img src="img/avatar_io.jpg" alt="profile">
-                                Sofia
+                                Ginevra
                             </div>
     
                             <div id="icon-avatar">
@@ -63,20 +63,27 @@
                             <div><i class="fa-solid fa-magnifying-glass"></i></div>
                         </div>
                     </nav>
-    
+                    
                     <!-- contenitore contatti -->
-                    <ul id="users-list">
-                        <li class="user">
-                            <div class="user-img">
-                                <img src="img/avatar_1.jpg" alt="user img">
-                            </div>
-                            <div class="user-description">
-                                <div class="user-name">Michele</div>
-                                <div class="user-message">Ultimo messaggio inviato</div>
-                            </div>
-                            <div class="user-time">12.00</div>
-                        </li>
-                    </ul>
+                    <div id="container-users">
+                        
+                        <ul id="users-list">
+    
+                            <li v-for="(contact, index) in contacts" @click="changeChatIndex(index)" :class="index == activeUser ? 'active' : '' " class="user">
+                                <div class="user-img">
+                                    <img v-bind:src="contact.avatar" alt="user img">
+                                </div>
+                                <div class="user-description">
+                                    <div class="user-name">{{contact.name}}</div>
+                                    <div class="user-message">Ultimo messaggio inviato</div>
+                                </div>
+                                <div class="user-time">12.00</div>
+                            </li>
+    
+                        </ul>
+
+                    </div>
+
                 </aside>
 
                 <!-- ------------------------------------------------- -->
@@ -87,9 +94,9 @@
                     <nav>
                         <!-- lato sinistro navbar: img + username + ultimo accesso -->
                         <div id="user-active">
-                            <img id="user-active-img" src="img/avatar_1.jpg" alt="">
+                            <img id="user-active-img" :src="contacts[activeUser].avatar" alt="">
                             <div id="user-active-description">
-                                <div id="user-active-name">Michele</div>
+                                <div id="user-active-name"> {{contacts[activeUser].name}} </div>
                                 <div id="user-active-access">Ultimo accesso oggi alle 12.00</div>
                             </div>
                         </div>
@@ -103,7 +110,17 @@
                     </nav>
 
                     <!-- chat -->
-                    <div id="chat"></div>
+                    <div id="chat">
+
+                        <div v-for="singleMessage in contacts[activeUser].messages" class="message" v-bind:class="singleMessage.status">
+                            {{singleMessage.message}}
+                            <div class="message-time">
+                                {{singleMessage.date}}
+                            </div>
+                        </div>
+
+
+                    </div>
 
                     <!-- area in cui scrivo e invio un messaggio -->
                     <div id="new-message">

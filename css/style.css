@@ -59,9 +59,9 @@
 
 #container aside nav #my-avatar #icon-avatar {
     display: flex;
-    gap: 7px;
+    gap: 10px;
     padding: 10px;
-    font-size: 1.1em;
+    font-size: 1.2em;
     color: #b1b1b1;
 }
 
@@ -117,8 +117,12 @@
 }
 
 
-
 /* contatti */
+#container aside #container-users {
+    height: calc(100% - (45px + 55px + 35px));
+    overflow-y: auto;
+}
+
 
 #container aside #users-list .user {
     display: flex;
@@ -128,6 +132,14 @@
     padding-left: 20px;
     position: relative;
     border-bottom: 1px solid #f1f1f1;
+}
+
+#container aside #users-list .user:hover {
+    background-color: lightblue;
+}
+
+#container aside #users-list .user.active {
+    background-color: lightblue;
 }
 
 /* sezione user img */
@@ -160,7 +172,6 @@
 
 
 /* lato destro: chat */
-
 #container #chat-container {
     width: 55%;
     height: 100%;
@@ -199,7 +210,7 @@
 
 #container #chat-container nav #nav-right-icon {
     display: flex;
-    gap: 7px;
+    gap: 10px;
     font-size: 1.2em;
     color: #b1b1b1;
 }
@@ -208,8 +219,38 @@
 #container #chat-container #chat {
     height: calc(100% - (45px + 45px));
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 25px;
+    overflow-y: auto;
 }
 
+#container #chat-container #chat .message {
+    padding: 6px 8px 13px 8px;
+    border-radius: 8px;
+    min-width: 120px;
+    max-width: 55%;
+    background-color: white;
+    position: relative;
+}
+
+#container #chat-container #chat .message .message-time {
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
+    font-size: 0.6em;
+    color: #b1b1b1;
+}
+
+#container #chat-container #chat .message.sent {
+    background-color: #d5f9ba;
+    align-self: flex-end;
+}
+
+
+/* parte bassa in cui invio un nuovo messaggio */
 #container #chat-container #new-message {
     height: 45px;
     background-color:#eaeaea;
