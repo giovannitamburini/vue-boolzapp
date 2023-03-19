@@ -116,13 +116,11 @@
     font-size: 1.1em;
 }
 
-
 /* contatti */
 #container aside #container-users {
     height: calc(100% - (45px + 55px + 35px));
     overflow-y: auto;
 }
-
 
 #container aside #users-list .user {
     display: flex;
@@ -169,7 +167,6 @@
     right: 10px;
     color: #b1b1b1;
 }
-
 
 /* lato destro: chat */
 #container #chat-container {
@@ -228,7 +225,7 @@
 }
 
 #container #chat-container #chat .message {
-    padding: 6px 8px 13px 8px;
+    padding: 6px 30px 15px 8px;
     border-radius: 8px;
     min-width: 120px;
     max-width: 55%;
@@ -249,8 +246,7 @@
     align-self: flex-end;
 }
 
-
-/* parte bassa in cui invio un nuovo messaggio */
+/* parte in cui invio un nuovo messaggio */
 #container #chat-container #new-message {
     height: 45px;
     background-color:#eaeaea;
@@ -258,12 +254,14 @@
     justify-content: space-evenly;
     align-items: center;
     color: #6b7376;
+    font-size: 1.3em;
 }
 
 #container #chat-container #new-message input {
     height: 70%;
     width: 80%;
     border: none;
-    padding-left: 5px;
+    padding-left: 10px;
     border-radius: 5px;
+    font-size: 0.8em;
 }

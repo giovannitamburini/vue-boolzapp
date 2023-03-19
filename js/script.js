@@ -167,55 +167,79 @@ createApp({
                     ],
                 }
             ],
-            // fine contacts
 
+            // indice attivato
             activeUser: 0,
-
+            // valore del campo di input della ricerca utenti
+            filterUsers: '',
+            // valore del campo di input del nuovo messaggio da inviare
             newMessage: '',
-
+            // inizzializzo un oggetto che conterrà le informazioni del messaggio che scrivo
             newMessageDescription: {},
+            // inizzializzo un oggetto che conterrà le informazioni del messaggio che si genera automaticamente in risposta al messaggio che invio
+            newMessageReceivedDescription: {},
+            // creo una varibaile per indicare l'orario corrente
+            time: new Date().getHours() + '.' + new Date().getMinutes(),
+        }
+    },
 
-            newMessageReceivedDescription: {}, 
+    // creo una proprietà computed per creare la reazione che mi farà ottenere solo gli utenti che combaciano con la ricerca effettuata in base a concordanza tra ciò che digito e il nome dei singoli utenti
+    computed: {
+        userList () {
+            if (this.filterUsers.trim().length > 0) {
+
+                return this.contacts.filter((contact) => contact.name.toLowerCase().includes(this.filterUsers.trim().toLowerCase()))
+            }
+
+            return this.contacts
         }
     },
 
     methods: {
 
+        // funzione che eguaglia l'indice dell'utente con l'indice attivo
         changeChatIndex (userIndex) {
 
             this.activeUser = userIndex;
         },
 
+        // funzione per pushare all'interno dell'array il messaggio digitato nel campo di input
         addNewMessageSent() {
 
-            this.newMessageDescription = {
+            // condizione per controllare se il campo di input è vuoto
+            if (this.newMessage.length > 0) {
 
-                date: '10/10',
-                message: this.newMessage,
-                status: 'sent',
-            };
-            
-            this.contacts[this.activeUser].messages.push(this.newMessageDescription);
+                // messaggio che invio dove il valore della proprietà message è uguale al messaggio digitato nel campo di input
+                this.newMessageDescription = {
+    
+                    date: this.time,
+                    message: this.newMessage,
+                    status: 'sent',
+                };
+                
+                // pusho nell'array dei messaggi il nuovo messaggio
+                this.contacts[this.activeUser].messages.push(this.newMessageDescription);
+    
+                this.newMessage = '';
 
-            this.newMessage = '';
-
-            setTimeout(this.addNewMessageReceived, 1000);
+                // funzione che si attiva trascorso un secondo
+                setTimeout(this.addNewMessageReceived, 1000);
+            }   
         },
 
+        // funzione che utilizzo nel setTimeout per generare in automatico un messaggio di risposta
         addNewMessageReceived() {
 
+            // messaggio di risposta
             this.newMessageReceivedDescription = {
 
-                date: '20/5',
+                date: this.time,
                 message: 'incredibile',
                 status: 'received',
             };
 
+            // pusho nell'array dei messaggi il nuovo messaggio generato automaticamente
             this.contacts[this.activeUser].messages.push(this.newMessageReceivedDescription);
-        }
-
-    },
-
-
-
-}).mount('#app')
+        },
+    }
+}).mount('#app');

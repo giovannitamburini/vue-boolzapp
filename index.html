@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Vue Boolzapp</title>
 
     <!-- font awesom -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
@@ -34,7 +34,8 @@
                                 <img src="img/avatar_io.jpg" alt="profile">
                                 Ginevra
                             </div>
-    
+
+                            <!-- icone a destra dei dati personali -->
                             <div id="icon-avatar">
                                 <i class="fa-sharp fa-solid fa-circle-notch"></i>
                                 <i class="fa-solid fa-message"></i>
@@ -42,11 +43,13 @@
                             </div>
                         </div>
     
-                        <!-- parte azzurra -->
+                        <!-- parte azzurra (attivazione messaggi)-->
                         <div id="active-messages">
+                            <!-- logo notifica -->
                             <div id="bell">
                                 <i class="fa-solid fa-bell-slash"></i>
                             </div>
+
                             <div id="bell-description">
                                 <div>
                                     Ricevi notifiche di nuovi messaggi
@@ -59,7 +62,9 @@
 
                         <!-- parte in cui inserisco la ricerca utente -->
                         <div id="search-input">
-                            <input type="text" placeholder="Cerca o inizia una nuova chat">
+                            <!-- creo un v-model per passare a vue il valore in input -->
+                            <input v-model="filterUsers" type="text" placeholder="Cerca o inizia una nuova chat">
+                            <!-- icona lente ingrandimento posizionata all'interno del campo di input -->
                             <div><i class="fa-solid fa-magnifying-glass"></i></div>
                         </div>
                     </nav>
@@ -67,23 +72,27 @@
                     <!-- contenitore contatti -->
                     <div id="container-users">
                         
+                        <!-- lista dei contatti -->
                         <ul id="users-list">
-    
-                            <li v-for="(contact, index) in contacts" @click="changeChatIndex(index)" :class="index == activeUser ? 'active' : '' " class="user">
+                            <!-- contatto singolo: creo un ciclo v-for per ogni contatto contenuto nell'array 'contacts'. inoltre aggiungo un evento click che cambia permanentemente il background color -->
+                            <li v-for="(contact, index) in userList" @click="changeChatIndex(index)" :class="index == activeUser ? 'active' : '' " class="user">
+                                <!-- immagine user -->
                                 <div class="user-img">
+                                    <!-- richiamo l'src dalla proprietà avatar del contatto -->
                                     <img v-bind:src="contact.avatar" alt="user img">
                                 </div>
+                                <!-- nome e ultimo messaggio user -->
                                 <div class="user-description">
+                                    <!-- richiamo il nome dalla proprietà name del contatto -->
                                     <div class="user-name">{{contact.name}}</div>
-                                    <div class="user-message">Ultimo messaggio inviato</div>
+                                    <!-- AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
+                                    <!-- SISTEMARE AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
+                                    <div class="user-message">{{contact.messages[0].date}}</div>
                                 </div>
                                 <div class="user-time">12.00</div>
                             </li>
-    
                         </ul>
-
                     </div>
-
                 </aside>
 
                 <!-- ------------------------------------------------- -->
@@ -94,8 +103,11 @@
                     <nav>
                         <!-- lato sinistro navbar: img + username + ultimo accesso -->
                         <div id="user-active">
+                            <!-- immagine del contatto attivo dove l'src è uguale alla proprietà avatar del contatto di indice pari all'indice attivo del contatto attivato -->
                             <img id="user-active-img" :src="contacts[activeUser].avatar" alt="">
+                            <!-- nome e ultimo accesso del contatto attivo -->
                             <div id="user-active-description">
+                                <!-- nome uguale alla proprietà name del contatto con indice pari all'indice attivo -->
                                 <div id="user-active-name"> {{contacts[activeUser].name}} </div>
                                 <div id="user-active-access">Ultimo accesso oggi alle 12.00</div>
                             </div>
@@ -111,30 +123,27 @@
 
                     <!-- chat -->
                     <div id="chat">
-
+                        <!-- creo un ciclo v-for per creare un numero di messaggi pari alla lunghezza dell'array 'messages' del singolo contatto e dove il messaggio singolo è uguale al valore della proprietà message. aggiungo una classe in base al tipo di messaggio(se ricevuto o mandato) -->
                         <div v-for="singleMessage in contacts[activeUser].messages" class="message" v-bind:class="singleMessage.status">
                             {{singleMessage.message}}
+                            <!-- data uguale alla proprietà 'date' del singolo messaggio nell'array 'messages' -->
                             <div class="message-time">
                                 {{singleMessage.date}}
                             </div>
                         </div>
-
-
                     </div>
 
                     <!-- area in cui scrivo e invio un messaggio -->
                     <div id="new-message">
                         <i class="fa-regular fa-face-smile"></i>
+                        <!-- zona di input in cui al cliccare del tasto invio aggiunge il messaggio digitato nell'array 'messages' dell'utente attivo -->
                         <input v-model="newMessage" @keyup.enter="addNewMessageSent()" type="text" placeholder="Scrivi un messaggio">
                         <i class="fa-solid fa-microphone"></i>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- container whatsapp -->
-
     </div>
-
 
     <script src="js/script.js"></script>
 </body>
