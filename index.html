@@ -148,7 +148,15 @@
                         <i class="fa-regular fa-face-smile"></i>
                         <!-- zona di input in cui al cliccare del tasto invio aggiunge il messaggio digitato nell'array 'messages' dell'utente attivo -->
                         <input v-model="newMessage" @keyup.enter="addNewMessageSent()" type="text" placeholder="Scrivi un messaggio">
-                        <i class="fa-solid fa-microphone"></i>
+                        <!-- aggiungo la possbilità di pushare il messaggio nell'array 'messages' anche tramite l'icona dell'aeroplanino solo nel caso in cui sia stato effettivamente digitato qualcosa -->
+                        <!-- se il campo di input è vuoto mostro normalmente l'icona del microfono -->
+                        <div v-if="newMessage == '' ">
+                            <i class="fa-solid fa-microphone"></i>
+                        </div>
+                        <!-- se digito qualcosa nel campo di input allora scompare l'icona del microfono e appare quella dell'aeroplanino che può essere cliccata, attivando la funzione che pusha il messaggio nell'array 'messages' -->
+                        <div v-else @click="addNewMessageSent()">
+                            <i class="fa-regular fa-paper-plane"></i>
+                        </div>
                     </div>
                 </div>
             </div>
