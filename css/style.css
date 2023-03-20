@@ -255,6 +255,7 @@
     overflow-y: auto;
 }
 
+/* customizzazione barra di scorrimento */
 #container #chat-container #chat::-webkit-scrollbar {
     width: 10px;
     border-radius: 10px;
@@ -268,6 +269,7 @@
 #container #chat-container #chat::-webkit-scrollbar-thumb:hover {
     background: #90827b;
 }
+/* fine customizzazione */
 
 #container #chat-container #chat .message {
     padding: 6px 30px 15px 8px;
