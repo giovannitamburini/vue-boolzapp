@@ -168,6 +168,11 @@
     color: #b1b1b1;
 }
 
+#container aside #container-users #no-resoult {
+    text-align: center;
+    padding-top: 20px;
+}
+
 /* lato destro: chat */
 #container #chat-container {
     width: 55%;
@@ -244,6 +249,33 @@
 #container #chat-container #chat .message.sent {
     background-color: #d5f9ba;
     align-self: flex-end;
+}
+
+#container #chat-container #chat .drop-invisible {
+    display: none;
+}
+
+#container #chat-container #chat .drop-down {
+    display: flex;
+    align-items: end;
+    flex-direction: column;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+#container #chat-container #chat .drop-down .basic {
+    display: none;
+}
+
+/* menu a tendina */
+#container #chat-container #chat .drop-down .basic.canc {
+    display: block;
+    margin-top: 4px;
+    padding: 6px;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
 }
 
 /* parte in cui invio un nuovo messaggio */

@@ -73,7 +73,7 @@
                     <div id="container-users">
                         
                         <!-- lista dei contatti -->
-                        <ul id="users-list">
+                        <ul id="users-list" v-if="userList.length">
                             <!-- contatto singolo: creo un ciclo v-for per ogni contatto contenuto nell'array 'contacts'. inoltre aggiungo un evento click che cambia permanentemente il background color -->
                             <li v-for="(contact, index) in userList" @click="changeChatIndex(index)" :class="index == activeUser ? 'active' : '' " class="user">
                                 <!-- immagine user -->
@@ -92,6 +92,8 @@
                                 <div class="user-time">12.00</div>
                             </li>
                         </ul>
+                        <!-- caso in cui la ricerca non coincide con nessun risultato -->
+                        <div v-else id="no-resoult">Nessun risultato trovato</div>
                     </div>
                 </aside>
 
@@ -124,11 +126,15 @@
                     <!-- chat -->
                     <div id="chat">
                         <!-- creo un ciclo v-for per creare un numero di messaggi pari alla lunghezza dell'array 'messages' del singolo contatto e dove il messaggio singolo è uguale al valore della proprietà message. aggiungo una classe in base al tipo di messaggio(se ricevuto o mandato) -->
-                        <div v-for="singleMessage in contacts[activeUser].messages" class="message" v-bind:class="singleMessage.status">
+                        <div v-for="(singleMessage, index) in contacts[activeUser].messages" class="message" v-bind:class="singleMessage.status">
                             {{singleMessage.message}}
                             <!-- data uguale alla proprietà 'date' del singolo messaggio nell'array 'messages' -->
                             <div class="message-time">
                                 {{singleMessage.date}}
+                            </div>
+                            <!-- creo un menu a tendina (solo per i messaggi con lo status uguale a 'sent') in cui appare la possibilità di eliminare il messaggio singolo e lo faccio richiamando una funzione da vue tramite un evento click -->
+                            <div :class="singleMessage.status == 'sent' ? 'drop-down' : '' " class="drop-invisible" @click="changeVisibility(singleMessage)"><i class="fa-solid fa-chevron-down"></i>
+                                <div @click="removeMessage(contacts[activeUser].messages, index)" :class="singleMessage.visibility == true ? 'canc' : '' " class="basic">Delete message</div>
                             </div>
                         </div>
                     </div>
