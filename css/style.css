@@ -68,7 +68,7 @@
 #container aside nav #active-messages {
     width: 100%;
     height: 55px;
-    background-color: #8edafc;
+    background-color: #00d0dc;
     display: flex;
     align-items: center;
     padding: 15px;
@@ -79,7 +79,7 @@
     border-radius: 50%;
     margin-right: 7px;
     background-color: #f2fbff;
-    color: #8edafc;
+    color: #00d0dc;
 }
 
 #container aside nav #active-messages #bell-description div {
@@ -122,6 +122,24 @@
     overflow-y: auto;
 }
 
+/* customizzazione scroll bar della lista delle converssazioni  */
+#container aside #container-users::-webkit-scrollbar {
+    width: 10px;
+    border: 1px solid #b1b1b1;
+    border-radius: 10px;
+}
+
+#container aside #container-users::-webkit-scrollbar-thumb {
+    background: lightblue;
+    border-radius: 5px;
+}
+
+#container aside #container-users::-webkit-scrollbar-thumb:hover {
+    background: #00d0dc;
+}
+/* fine customizzaione */
+
+
 #container aside #users-list .user {
     display: flex;
     align-items: center;
@@ -133,11 +151,11 @@
 }
 
 #container aside #users-list .user:hover {
-    background-color: lightblue;
+    background-color: #8bdaff;
 }
 
 #container aside #users-list .user.active {
-    background-color: lightblue;
+    background-color: #8bdaff;
 }
 
 /* sezione user img */
@@ -235,6 +253,20 @@
     gap: 20px;
     padding: 25px;
     overflow-y: auto;
+}
+
+#container #chat-container #chat::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 10px;
+}
+
+#container #chat-container #chat::-webkit-scrollbar-thumb {
+    background: #f8ebe9;
+    border-radius: 5px;
+}
+
+#container #chat-container #chat::-webkit-scrollbar-thumb:hover {
+    background: #90827b;
 }
 
 #container #chat-container #chat .message {
