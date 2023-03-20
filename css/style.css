@@ -151,6 +151,10 @@
     border-radius: 50%;
 }
 
+#container aside #users-list .user .user-description {
+    width: 80%;
+}
+
 /* sezione user name */
 #container aside #users-list .user .user-name {
     font-size: 1.3em;
@@ -158,6 +162,10 @@
 }
 
 #container aside #users-list .user .user-message {
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     color: #b1b1b1;
 }
 

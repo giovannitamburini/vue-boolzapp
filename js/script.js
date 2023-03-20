@@ -199,8 +199,6 @@ createApp({
             newMessageDescription: {},
             // inizzializzo un oggetto che conterrà le informazioni del messaggio che si genera automaticamente in risposta al messaggio che invio
             newMessageReceivedDescription: {},
-            // creo una varibaile per indicare l'orario corrente
-            time: new Date().getHours() + '.' + new Date().getMinutes(),
         }
     },
 
@@ -233,7 +231,7 @@ createApp({
                 // messaggio che invio dove il valore della proprietà message è uguale al messaggio digitato nel campo di input
                 this.newMessageDescription = {
     
-                    date: this.time,
+                    date: new Date().getHours() + '.' + new Date().getMinutes(),
                     message: this.newMessage,
                     status: 'sent',
                     visibility: false,
@@ -255,8 +253,8 @@ createApp({
             // messaggio di risposta
             this.newMessageReceivedDescription = {
 
-                date: this.time,
-                message: 'incredibile',
+                date: new Date().getHours() + '.' + new Date().getMinutes(),
+                message: 'ok',
                 status: 'received',
             };
 
@@ -266,7 +264,7 @@ createApp({
 
         // funzione per cambiare il valore della proprietà visibility che mi servirà per aggiungere/togliere una classe nell'html
         changeVisibility(message) {
-            
+
             if (message.visibility == false) {
 
                 message.visibility = true;

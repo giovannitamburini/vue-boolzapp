@@ -85,11 +85,12 @@
                                 <div class="user-description">
                                     <!-- richiamo il nome dalla proprietà name del contatto -->
                                     <div class="user-name">{{contact.name}}</div>
-                                    <!-- AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
-                                    <!-- SISTEMARE AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
-                                    <div class="user-message">{{contact.messages[0].date}}</div>
+                                    <!-- visualizzo l'ultimo messaggio ricevuto o inviato all'interno della conversazione -->
+                                    <div class="user-message">{{contact.messages[contact.messages.length - 1].message}}</div>
                                 </div>
-                                <div class="user-time">12.00</div>
+                                <!-- visualizzo il valore della proprietà 'date' dell'ultimo messaggio della lista -->
+                                <div class="user-time">{{contact.messages[contact.messages.length - 1].date}}</div>
+
                             </li>
                         </ul>
                         <!-- caso in cui la ricerca non coincide con nessun risultato -->
@@ -111,7 +112,10 @@
                             <div id="user-active-description">
                                 <!-- nome uguale alla proprietà name del contatto con indice pari all'indice attivo -->
                                 <div id="user-active-name"> {{contacts[activeUser].name}} </div>
-                                <div id="user-active-access">Ultimo accesso oggi alle 12.00</div>
+                                <!-- applico un controllo per visualizzare l'orario dell'ultimo messaggio con status uguale a 'received' -->
+                                <div v-if="contacts[activeUser].messages[contacts[activeUser].messages.length - 1].status == 'received' " id="user-active-access">Ultimo accesso oggi alle {{contacts[activeUser].messages[contacts[activeUser].messages.length - 1].date}}</div>
+                                <div v-else id="user-active-access">Ultimo accesso oggi alle {{contacts[activeUser].messages[contacts[activeUser].messages.length - 2].date}}</div>
+
                             </div>
                         </div>
 
