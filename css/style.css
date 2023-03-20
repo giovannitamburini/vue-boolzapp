@@ -125,7 +125,6 @@
 /* customizzazione scroll bar della lista delle converssazioni  */
 #container aside #container-users::-webkit-scrollbar {
     width: 10px;
-    border: 1px solid #b1b1b1;
     border-radius: 10px;
 }
 
